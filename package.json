@@ -1,0 +1,22 @@
+{
+	"name": "textx-ls",
+	"description": "A language server client for textx dsl",
+	"author": "Daniel Elero",
+	"version": "0.0.1",
+	"publisher": "danixeee",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/textX-tools/textX-vscode"
+	},
+	"scripts": {
+		"postinstall": "cd client && npm install && cd ..",
+		"compile": "tsc -p client/tsconfig.json",
+		"client-compile": "tsc -p client/tsconfig.json",
+		"client-watch": "tsc -w -p client/tsconfig.json"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^6.0.88",
+		"typescript": "^2.5.2"
+	}
+}

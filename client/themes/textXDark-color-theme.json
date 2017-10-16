@@ -1,0 +1,164 @@
+{
+	"name": "textXDark",
+	"uuid": "fb6a7cfb-5c2a-4229-bb38-e10baa5ef1d8",
+	"author": "",
+	"comment": "Visual Studio Code dark theme for textX language.",
+    "colors": {
+		"editor.background": "#121212",
+		"editor.foreground": "#cccccc",
+		"editor.lineHighlightBackground": "#232323",
+		"editor.lineHighlightBorder": "#cccccc",
+
+		"editorLineNumber.foreground": "#999999",
+
+		"editor.selectionBackground": "#044404",
+		"editor.selectionHighlightBackground": "#044404",
+
+
+		"sideBar.background": "#222222",
+		"statusBar.background": "#004f00",
+
+		"editorGroupHeader.tabsBackground": "#1c1c1c",
+
+		"tab.inactiveBackground": "#2e2e2e",
+		"tab.activeBackground": "#111111",
+		"tab.border": "#777777",
+
+		"activityBar.background": "#111111"
+	},
+	"tokenColors": [
+		{
+			"name": "TextX default",
+			"scope": "source.textx",
+			"settings": {
+				"background": "#051336",
+				"foreground": "#ffffff"
+			}
+		},
+		{
+			"name": "Comments",
+			"scope": "comment",
+			"settings": {
+				"foreground": "#fffa99"
+			}
+		},
+		{
+			"name": "Strings",
+			"scope": "string",
+			"settings": {
+				"foreground": "#ff9166"
+			}
+		},
+		{
+			"name": "Regular expressions",
+			"scope": "string.regexp",
+			"settings": {
+				"foreground": "#56ff3f"
+			}
+		},
+		{
+			"name": "Numbers",
+			"scope": [
+				"constant.character",
+				"constant.numeric"
+			],
+			"settings": {
+				"foreground": "#f280d0"
+			}
+		},
+		{
+			"name": "Built-in constants",
+			"scope": "constant.language.textx",
+			"settings": {
+				"foreground": "#d811a3"
+			}
+		},
+		{
+			"name": "User-defined constants",
+			"scope": "constant.other",
+			"settings": {
+				"foreground": "#6d0050"
+			}
+		},
+		{
+			"name": "Keyword operators",
+			"scope": "keyword.operator.textx",
+			"settings": {
+				"foreground": "#ffffff"
+			}
+		},
+		{
+			"name": "Choice operators",
+			"scope": [
+				"keyword.operator.choice",
+				"keyword.operator.delimit.squarebracket"
+			],
+			"settings": {
+				"foreground": "#f7e229",
+				"fontStyle": ""
+			}
+		},
+		{
+			"name": "Squarebrackets",
+			"scope": [
+				"keyword.operator.reference.squarebracket",
+				"keyword.operator.delimit.squarebracket"
+			],
+			"settings": {
+				"foreground": "#f7f451",
+				"fontStyle": ""
+			}
+		},
+		{
+			"name": "Delimiter",
+			"scope": [
+				"support.property.group.delimit",
+				"keyword.operator.property.group.delimiter"
+			],
+			"settings": {
+				"fontStyle": "italic",
+				"foreground": "#f78550"
+			}
+		},
+		{
+			"name": "Storage types",
+			"scope": "storage.type",
+			"settings": {
+				"fontStyle": "",
+				"foreground": "#c96bf9"
+			}
+		},
+		{
+			"name": "Entity names",
+			"scope": "entity.name.entity",
+			"settings": {
+				"fontStyle": "bold",
+				"foreground": "#8cd4ff"
+			}
+		},
+		{
+			"name": "Base types",
+			"scope": "support.type",
+			"settings": {
+				"foreground": "#8cd4ff",
+				"fontStyle": "bold italic"
+			}
+		},
+		{
+			"name": "Base types",
+			"scope": "support.type.basetype",
+			"settings": {
+				"foreground": "#b54149",
+				"fontStyle": "bold"
+			}
+		},
+		{
+			"name": "Property names",
+			"scope": "entity.name.property",
+			"settings": {
+				"foreground": "#bcff82",
+				"fontStyle": "italic"
+			}
+		}
+	]
+}
