@@ -45,6 +45,12 @@
 				"uiTheme": "vs-dark",
 				"path": "./themes/textXDark-color-theme.json"
 			}
+		],
+		"commands": [
+			{
+				"command": "genext",
+				"title": "Generate extension"
+			}
 		]
 	},
 	"scripts": {
