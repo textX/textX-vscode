@@ -5,10 +5,28 @@
 'use strict';
 
 import * as net from 'net';
+import * as vscode from 'vscode';
+import { Disposable, ExtensionContext } from 'vscode';
+import { ExecutableOptions, ServerOptions, LanguageClient, LanguageClientOptions } from 'vscode-languageclient';
 
-import { Disposable, ExtensionContext, workspace } from 'vscode';
-import { LanguageClient, LanguageClientOptions, ServerOptions } from 'vscode-languageclient';
-
+function startLangServer(command: string, args: string[], documentSelector: string[]): Disposable {
+	const options: ExecutableOptions  = {
+		shell: true,
+		cwd: 'c:\\Users\\Daniel\\Desktop\\client\\textxlsenv\\Scripts'
+	}
+	const serverOptions: ServerOptions = {
+        command,
+		args,
+		options
+	};
+	const clientOptions: LanguageClientOptions = {
+		documentSelector: ['*'],
+        synchronize: {
+            configurationSection: command
+        }
+	}
+	return new LanguageClient(command, serverOptions, clientOptions).start();
+}
 
 function startLangServerTCP(addr: number): Disposable {
 	const serverOptions: ServerOptions = function() {
@@ -28,14 +46,16 @@ function startLangServerTCP(addr: number): Disposable {
 		documentSelector: ['*'], // filter documents on server (based on configuration file)
         // synchronize: {
         //     fileEvents: workspace.createFileSystemWatcher('**/*.*')
-        // }
+		// }
 	}
 	return new LanguageClient(`tcp lang server (port ${addr})`, serverOptions, clientOptions).start();
 }
 
-
-
 export function activate(context: ExtensionContext) {
-	console.log("Starting on port 5000");
-	context.subscriptions.push(startLangServerTCP(5000));
+	let isWin = /^win/.test(process.platform);
+	let cmd = (isWin === true ? '' : 'source ') + 'activate && textxls'
+
+	// context.subscriptions.push(startLangServerTCP(5000));
+	context.subscriptions.push(startLangServer(cmd, [], []))
 }
+

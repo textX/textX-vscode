@@ -1,5 +1,4 @@
+out
 node_modules
-client/out
-client/node_modules
-.vscode
 package-lock.json
+textxlsenv
