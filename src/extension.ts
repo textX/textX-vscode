@@ -6,13 +6,18 @@
 
 import * as net from 'net';
 import * as vscode from 'vscode';
-import { Disposable, ExtensionContext } from 'vscode';
+import { Disposable, ExtensionContext, workspace } from 'vscode';
 import { ExecutableOptions, ServerOptions, LanguageClient, LanguageClientOptions } from 'vscode-languageclient';
 
+import { join } from 'path';
+import * as fs from 'fs';
+import { setTimeout } from 'timers';
+
 function startLangServer(command: string, args: string[], documentSelector: string[]): Disposable {
+
 	const options: ExecutableOptions  = {
-		shell: true,
-		cwd: 'c:\\Users\\Daniel\\Desktop\\client\\textxlsenv\\Scripts'
+		// shell: true,
+		cwd: join(__dirname,'../textxlsenv/bin')
 	}
 	const serverOptions: ServerOptions = {
         command,
@@ -42,20 +47,29 @@ function startLangServerTCP(addr: number): Disposable {
 	}
 
 	const clientOptions: LanguageClientOptions = {
-		//documentSelector: ['textx', 'textX'],
 		documentSelector: ['*'], // filter documents on server (based on configuration file)
-        // synchronize: {
-        //     fileEvents: workspace.createFileSystemWatcher('**/*.*')
-		// }
+		synchronize: {
+			fileEvents: workspace.createFileSystemWatcher('**/*.*')
+		}
 	}
 	return new LanguageClient(`tcp lang server (port ${addr})`, serverOptions, clientOptions).start();
 }
 
 export function activate(context: ExtensionContext) {
-	let isWin = /^win/.test(process.platform);
-	let cmd = (isWin === true ? '' : 'source ') + 'activate && textxls'
 
-	// context.subscriptions.push(startLangServerTCP(5000));
-	context.subscriptions.push(startLangServer(cmd, [], []))
+	context.subscriptions.push(startLangServerTCP(5000))
+
+	// let isWin = /^win/.test(process.platform);
+	// let cmd = (isWin === true ? '' : 'source ') + 'activate && textxls'
+
+	// let p = join(__dirname,'../textxlsenv/bin')
+	// vscode.window.showInformationMessage(p);
+
+	//context.subscriptions.push(startLangServerTCP(5000));
+	// context.subscriptions.push(startLangServer(cmd, [], []))
+
+	// context.subscriptions.push(vscode.commands.registerCommand('test', (x) => {
+	// 	return x;
+	// }));
 }
 

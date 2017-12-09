@@ -15,7 +15,7 @@
 		"Languages"
 	],
 	"activationEvents": [
-		"*"
+		"workspaceContains:**/.txconfig"
 	],
 	"main": "./out/extension",
 	"contributes": {
@@ -30,6 +30,26 @@
 					".tx"
 				],
 				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "txcolor",
+				"extensions": [
+					".txcl"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "txoutline",
+				"extensions": [
+					".txol"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "txconfig",
+				"extensions": [
+					".txconfig"
+				]
 			}
 		],
 		"grammars": [
@@ -37,6 +57,16 @@
 				"language": "textx",
 				"scopeName": "source.textx",
 				"path": "./syntaxes/textx.tmLanguage.json"
+			},
+			{
+				"language": "txcolor",
+				"scopeName": "source.txcolor",
+				"path": "./syntaxes/coloring.tmLanguage.json"
+			},
+			{
+				"language": "txoutline",
+				"scopeName": "source.txoutline",
+				"path": "./syntaxes/outline.tmLanguage.json"
 			}
 		],
 		"themes": [
@@ -94,6 +124,6 @@
 		"@types/mocha": "^2.2.32"
 	},
 	"dependencies": {
-		"vscode-languageclient": "^3.3.0"
+		"vscode-languageclient": "^3.5.0"
 	}
 }

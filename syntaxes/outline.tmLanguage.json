@@ -1,0 +1,77 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "txoutline",
+	"scopeName": "source.txoutline",
+	"fileTypes": [".txol"],
+	"patterns": [
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#number"
+				},
+				{
+					"include": "#language_keyword"
+				},
+				{
+					"include": "#language_operation"
+				},
+				{
+					"include": "#regular_expression"
+				}
+				],
+                "repository": {
+					"string": {
+						"patterns": [
+									{
+										"name": "string.quoted.single",
+										"begin": "'",
+										"end": "'"
+									},
+									{
+										"name": "string.quoted.double",
+										"begin": "\"",
+										"end": "\""
+									}
+									]
+					},
+					"number": {
+						"patterns": [
+									{
+										"name": "constant.numeric",
+										"match": "[0-9.]+"
+									}
+									]
+					},
+					"language_keyword": {
+						"patterns": [
+									{
+										"name": "keyword.control",
+										"match": "(label({|}|=|\\+)*$|label({|}|=|\\+)* |icon({|}|=|\\+)*$|icon({|}|=|\\+)* )",
+										"captures": {
+                                            "1": {
+                                                "patterns": [
+                                                    {
+                                                        "name": "keyword.operator.new",
+                                                        "match": "({|}|=|\\+)"
+                                                    }
+                                                ]
+                                            }
+                                        }
+									}
+									]
+					},
+					"language_operation": {
+						"patterns": [
+									{
+										"name": "keyword.operator.new",
+										"match": "({|}|=|\\+)"
+									}
+									]
+					},
+					"regular_expression": {
+						"patterns": [
+									]
+					}
+				}
+}

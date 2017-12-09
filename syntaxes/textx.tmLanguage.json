@@ -1,381 +1,108 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"uuid": "fb6a7cfb-5c2a-4229-bb38-e10baa5ef1d8",
-	"name": "textX",
+	"name": "textx",
 	"scopeName": "source.textx",
-	"fileTypes": [
-		"tx"
-	],
-	"patterns": [{
-			"include": "#keyword"
-		},
-		{
-			"include": "#constant"
-		},
-		{
-			"include": "#support"
-		},
-		{
-			"include": "#comment"
-		},
-		{
-			"include": "#string"
-		},
-		{
-			"include": "#meta"
-		}
-	],
-	"repository": {
-		"keyword": {
-			"patterns": [{
-					"include": "#operator"
+	"fileTypes": [".tx"],
+	"patterns": [
+				{
+					"include": "#comment"
 				},
 				{
-					"include": "#assignment"
-				}
-			],
-			"repository": {
-				"operator": {
-					"patterns": [{
-						"name": "keyword.operator.textx",
-						"match": "(\\||\\?|\\*|\\+|#|\\!|\\&)"
-					}]
-				},
-				"assignment": {
-					"patterns": [{
-						"name": "keyword.operator.assignment.textx",
-						"match": "(\\?=|\\*=|\\+=|=)"
-					}]
-				}
-			}
-		},
-		"constant": {
-			"patterns": [{
-				"name": "constant.language.textx",
-				"match": "(true|false|eolterm)"
-			}]
-		},
-		"string": {
-			"patterns": [{
-					"include": "#double-quoted"
+					"include": "#string"
 				},
 				{
-					"include": "#single-quoted"
+					"include": "#number"
 				},
 				{
-					"include": "#regexp"
-				}
-			],
-			"repository": {
-				"double-quoted": {
-					"patterns": [{
-						"name": "string.quoted.double.textx",
-						"begin": "\"",
-						"end": "\"",
-						"patterns": [{
-							"include": "#escape-character"
-						}]
-					}]
-				},
-				"single-quoted": {
-					"patterns": [{
-						"name": "string.quoted.single.textx",
-						"begin": "'",
-						"end": "'",
-						"patterns": [{
-							"include": "#escape-character"
-						}]
-					}]
-				},
-				"regexp": {
-					"patterns": [{
-						"name": "string.regexp.textx",
-						"begin": "\\/",
-						"end": "\\/",
-						"patterns": [{
-							"include": "#escape-character"
-						}]
-					}]
-				},
-				"escape-character": {
-					"patterns": [{
-						"name": "constant.character.escape.textx",
-						"comment": "Escape character within regular expression.",
-						"match": "\\\\."
-					}]
-				}
-			}
-		},
-		"support": {
-			"patterns": [{
-				"include": "#basetypes"
-			}],
-			"repository": {
-				"basetypes": {
-					"patterns": [{
-						"name": "support.type.basetype.textx",
-						"comment": "Base types provided by the framework.",
-						"match": "(BASETYPE|NUMBER|INT|FLOAT|STRING|BOOL|ID)"
-					}]
-				}
-			}
-		},
-		"comment": {
-			"patterns": [{
-					"include": "#line-comment"
+					"include": "#language_keyword"
 				},
 				{
-					"include": "#block-comment"
-				}
-			],
-			"repository": {
-				"line-comment": {
-					"patterns": [{
-						"name": "comment.line.double-slash.textx",
-						"match": "\\/\\/.*$"
-					}]
+					"include": "#language_operation"
 				},
-				"block-comment": {
-					"patterns": [{
-						"name": "comment.block.textx",
-						"begin": "\\/\\*",
-						"end": "\\*\\/"
-					}]
+				{
+					"include": "#regular_expression"
 				}
-			}
-		},
-		"meta": {
-			"patterns": [{
-				"include": "#entity"
-			}],
-			"repository": {
-				"entity": {
-					"patterns": [{
-						"name": "meta.entity.textx",
-						"comment": "Definition of an entity.",
-						"begin": "(\\w+):(\\s|\\/\\/|\\/\\*)?",
-						"beginCaptures": {
-							"1": {
-								"name": "entity.name.entity.textx"
-							}
-						},
-						"end": ";(\\s|\\/\\/|\\/\\*)?",
-						"patterns": [{
-								"include": "#comment"
-							},
-							{
-								"include": "#property"
-							},
-							{
-								"include": "#string"
-							}
-						]
-					}],
-					"repository": {
-						"property": {
-							"patterns": [{
-									"include": "#property-group"
-								},
-								{
-									"include": "#property-named"
-								},
-								{
-									"include": "#property-type"
-								}
-							],
-							"repository": {
-								"property-group": {
-									"patterns": [{
-										"name": "meta.property.group.textx",
-										"comment": "Properties, property types or strings grouped within an entity surrounded with parentheses.",
-										"begin": "(\\|\\s*)?(\\()",
-										"beginCaptures": {
-											"1": {
-												"patterns": [{
-													"name": "keyword.operator.choice.property.group.textx",
-													"comment": "Choice operator within property group.",
-													"match": "\\|"
-												}]
-											},
-											"2": {
-												"name": "keyword.operator.bracket.open.textx"
-											}
-										},
-										"end": "(\\))(\\?|\\*|\\+|#)?(\\[(('.')|(\".\"))\\])?",
-										"endCaptures": {
-											"1": {
-												"name": "keyword.operator.bracket.closed.textx"
-											},
-											"2": {
-												"name": "keyword.operator.property.group.repetition.textx"
-											},
-											"3": {
-												"name": "support.property.group.delimit.textx",
-												"patterns": [{
-														"name": "keyword.operator.delimit.squarebracket.open.textx",
-														"match": "\\["
-													},
-													{
-														"name": "keyword.operator.delimit.squarebracket.closed.textx",
-														"match": "\\]"
-													}, {
-														"name": "keyword.operator.property.group.delimiter.textx",
-														"comment": "Delimiter for property group.",
-														"match": "[^\\[\\]\"']"
-													}
-												]
-											}
-										},
-										"patterns": [{
-											"include": "#property"
-										}]
-									}]
-								},
-								"property-named": {
-									"patterns": [{
-										"name": "meta.property.named.textx",
-										"comment": "A named property within an entity.",
-										"match": "(\\|\\s*)?(\\w+)\\s?(=|\\?=|\\+=|\\*=)\\s?((\\[[\\w\\|]+\\])|(\\(?\\w+(\\|\\w+)+\\)?)|(\\w+)(\\[(('.')|(\".\"))\\])?|([\"'\\/].*?[\"'\\/]))",
-										"captures": {
-											"1": {
-												"patterns": [{
-													"name": "keyword.operator.choice.property.named.textx",
-													"match": "\\|"
-												}]
-											},
-											"2": {
-												"name": "entity.name.property.textx"
-											},
-											"3": {
-												"name": "keyword.operator.assignment.textx"
-											},
-											"4": {
-												"patterns": [{
-														"include": "#property-group"
-													},
-													{
-														"include": "#property-type"
-													}
-												]
-											}
-										}
-									}]
-								},
-								"property-type": {
-									"patterns": [{
-											"name": "storage.type.property.definition.textx",
-											"comment": "A property type. Can be a string, regex, base type or one of the user defined entities.",
-											"match": "(\\[[\\w\\|]+\\])|(\\w+(\\|\\w+)+)|(\\w+)(\\[(('.')|(\".\"))\\])?|([\"'\\/].*?[\"'\\/](\\s*\\|\\s*[\"'\\/].*?[\"'\\/])*)",
-											"captures": {
-												"1": {
-													"name": "storage.type.property.reference.textx",
-													"patterns": [{
-															"name": "keyword.operator.reference.squarebracket.open.textx",
-															"match": "\\["
-														},
-														{
-															"name": "keyword.operator.reference.squarebracket.closed.textx",
-															"match": "\\]"
-														}, {
-															"include": "#support"
-														},
-														{
-															"include": "#property-type"
-														}
-													]
-												},
-												"2": {
-													"name": "storage.type.property.choice.textx",
-													"patterns": [{
-															"include": "#support"
-														},
-														{
-															"name": "storage.type.property.name.textx",
-															"match": "\\w+"
-														},
-														{
-															"name": "keyword.operator.choice.property.textx",
-															"match": "\\|"
-														}
-													]
-												},
-												"4": {
-													"patterns": [{
-														"include": "#support"
-													}, {
-														"name": "storage.type.property.name.textx",
-														"match": "\\w+"
-													}]
-												},
-												"5": {
-													"name": "support.property.group.delimit.textx",
-													"patterns": [{
-															"name": "keyword.operator.delimit.squarebracket.open.textx",
-															"match": "\\["
-														},
-														{
-															"name": "keyword.operator.delimit.squarebracket.closed.textx",
-															"match": "\\]"
-														}, {
-															"name": "keyword.operator.property.group.delimiter.textx",
-															"match": "[^\\[\\]\"']"
-														}
-													]
-												},
-												"9": {
-													"name": "storage.type.property.string.textx",
-													"patterns": [{
-															"name": "keyword.operator.choice.property.type.string.textx",
-															"comment": "Match '|' as choice operator between string property type definitions (exclude optional spaces from match).",
-															"match": "(?<=[\"'\\/\\s*])\\|(?=[\"'\\/\\s*])"
-														},
-														{
-															"include": "#string"
-														}
-													]
-												}
-											}
-										},
-										{
-											"name": "storage.type.property.textx",
-											"comment": "A property type. Support for optional type and strings.",
-											"match": "(\\|\\s*)?((\\w+\\??)|([\"'\\/].*?[\"'\\/]))",
-											"captures": {
-												"1": {
-													"patterns": [{
-														"name": "keyword.operator.choice.property.type.textx",
-														"match": "\\|"
-													}]
-												},
-												"3": {
-													"patterns": [{
-															"include": "#support"
-														}, {
-															"name": "storage.type.property.name.textx",
-															"match": "\\w+"
-														},
-														{
-															"name": "keyword.operator.type.property.optional.textx",
-															"match": "\\?"
-														}
-													]
-												},
-												"4": {
-													"name": "storage.type.property.string.textx",
-													"patterns": [{
-														"include": "#string"
-													}]
-												}
-											}
-										}
+				],
+                "repository": {
+					"comment": {
+						"patterns": [
+									{
+										"name": "comment.line",
+										"match": "//.*$"
+									},
+									{
+										"name": "comment.block",
+										"begin": "/\\*",
+										"end": "\\*/"
+									}
 									]
-								}
-							}
-						}
+					},
+					"string": {
+						"patterns": [
+									{
+										"name": "string.quoted.single",
+										"begin": "'",
+										"end": "'"
+									},
+									{
+										"name": "string.quoted.double",
+										"begin": "\"",
+										"end": "\""
+									}
+									]
+					},
+					"number": {
+						"patterns": [
+									{
+										"name": "constant.numeric",
+										"match": "[0-9.]+"
+									}
+									]
+					},
+					"language_keyword": {
+						"patterns": [
+									{
+										"name": "keyword.control",
+										"match": "(import(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|import(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* |eolterm(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|eolterm(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* |ID(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|ID(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* |BOOL(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|BOOL(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* |INT(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|INT(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* |FLOAT(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|FLOAT(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* |STRING(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|STRING(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* |NUMBER(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|NUMBER(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* |BASETYPE(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|BASETYPE(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* )",
+										"captures": {
+                                            "1": {
+                                                "patterns": [
+                                                    {
+                                                        "name": "keyword.operator.new",
+                                                        "match": "(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)"
+                                                    }
+                                                ]
+                                            }
+                                        }
+									}
+									]
+					},
+					"language_operation": {
+						"patterns": [
+									{
+										"name": "keyword.operator.new",
+										"match": "(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)"
+									}
+									]
+					},
+					"regular_expression": {
+						"patterns": [
+									{
+										"name": "entity.name.class",
+										"match": "(\\w+:(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|\\w+:(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* |\\w+:(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)*$|\\w+:(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)* )",
+                                        "captures": {
+                                            "1": {
+                                                "patterns": [
+                                                    {
+                                                        "name": "keyword.operator.new",
+                                                        "match": "(:|;|\\[|,|\\]|=|\\||-|\\(|\\)|\\*|\\?|\\+|#|!|&|\\*=|\\+=|\\?=|/)"
+                                                    }
+                                                ]
+                                            }
+                                        }
+
+									}
+									]
 					}
 				}
-			}
-		}
-	},
-	"scopeName": "source.textx"
 }

@@ -1,0 +1,119 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "txcolor",
+	"scopeName": "source.txcolor",
+	"fileTypes": [".txcl"],
+	"patterns": [
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#number"
+				},
+				{
+					"include": "#language_keyword"
+				},
+				{
+					"include": "#language_operation"
+				},
+				{
+					"include": "#regular_expression"
+				}
+				],
+                "repository": {
+					"string": {
+						"patterns": [
+									{
+										"name": "string.quoted.single",
+										"begin": "'",
+										"end": "'"
+									},
+									{
+										"name": "string.quoted.double",
+										"begin": "\"",
+										"end": "\""
+									}
+									]
+					},
+					"number": {
+						"patterns": [
+									{
+										"name": "constant.numeric",
+										"match": "[0-9.]+"
+									}
+									]
+					},
+					"language_keyword": {
+						"patterns": [
+									{
+										"name": "support.class",
+										"match": "(configuration(=|{|}|:|->|;|,)*$|configuration(=|{|}|:|->|;|,)* |rules(=|{|}|:|->|;|,)*$|rules(=|{|}|:|->|;|,)* |keywords(=|{|}|:|->|;|,)*$|keywords(=|{|}|:|->|;|,)* |regular(=|{|}|:|->|;|,)*$|regular(=|{|}|:|->|;|,)* |expressions(=|{|}|:|->|;|,)*$|expressions(=|{|}|:|->|;|,)* )",
+										"captures": {
+                                            "1": {
+                                                "patterns": [
+                                                    {
+                                                        "name": "keyword.operator.new",
+                                                        "match": "(=|{|}|:|->|;|,)"
+                                                    }
+                                                ]
+                                            }
+                                        }
+									},
+									{
+										"name": "keyword.control",
+										"match": "(default(=|{|}|:|->|;|,)*$|default(=|{|}|:|->|;|,)* |operation(=|{|}|:|->|;|,)*$|operation(=|{|}|:|->|;|,)* |start(=|{|}|:|->|;|,)*$|start(=|{|}|:|->|;|,)* |end(=|{|}|:|->|;|,)*$|end(=|{|}|:|->|;|,)* )",
+										"captures": {
+                                            "1": {
+                                                "patterns": [
+                                                    {
+                                                        "name": "keyword.operator.new",
+                                                        "match": "(=|{|}|:|->|;|,)"
+                                                    }
+                                                ]
+                                            }
+                                        }
+									},
+									{
+										"name": "entity.name.class",
+										"match": "(comment\\.block\\.documentation(=|{|}|:|->|;|,)*$|comment\\.block\\.documentation(=|{|}|:|->|;|,)* |comment\\.line\\.double-dash(=|{|}|:|->|;|,)*$|comment\\.line\\.double-dash(=|{|}|:|->|;|,)* |comment\\.line\\.double-slash(=|{|}|:|->|;|,)*$|comment\\.line\\.double-slash(=|{|}|:|->|;|,)* |comment\\.line\\.number-sign(=|{|}|:|->|;|,)*$|comment\\.line\\.number-sign(=|{|}|:|->|;|,)* |comment\\.line\\.percentage(=|{|}|:|->|;|,)*$|comment\\.line\\.percentage(=|{|}|:|->|;|,)* |comment\\.block(=|{|}|:|->|;|,)*$|comment\\.block(=|{|}|:|->|;|,)* |comment\\.line(=|{|}|:|->|;|,)*$|comment\\.line(=|{|}|:|->|;|,)* |constant\\.character\\.escape(=|{|}|:|->|;|,)*$|constant\\.character\\.escape(=|{|}|:|->|;|,)* |constant\\.sha\\.git-rebase(=|{|}|:|->|;|,)*$|constant\\.sha\\.git-rebase(=|{|}|:|->|;|,)* |constant\\.language(=|{|}|:|->|;|,)*$|constant\\.language(=|{|}|:|->|;|,)* |constant\\.numeric(=|{|}|:|->|;|,)*$|constant\\.numeric(=|{|}|:|->|;|,)* |constant\\.other(=|{|}|:|->|;|,)*$|constant\\.other(=|{|}|:|->|;|,)* |constant\\.regexp(=|{|}|:|->|;|,)*$|constant\\.regexp(=|{|}|:|->|;|,)* |constant\\.rgb-value(=|{|}|:|->|;|,)*$|constant\\.rgb-value(=|{|}|:|->|;|,)* |constant\\.character(=|{|}|:|->|;|,)*$|constant\\.character(=|{|}|:|->|;|,)* |constant(=|{|}|:|->|;|,)*$|constant(=|{|}|:|->|;|,)* |emphasis(=|{|}|:|->|;|,)*$|emphasis(=|{|}|:|->|;|,)* |entity\\.name\\.class(=|{|}|:|->|;|,)*$|entity\\.name\\.class(=|{|}|:|->|;|,)* |entity\\.name\\.function(=|{|}|:|->|;|,)*$|entity\\.name\\.function(=|{|}|:|->|;|,)* |entity\\.name\\.method(=|{|}|:|->|;|,)*$|entity\\.name\\.method(=|{|}|:|->|;|,)* |entity\\.name\\.section(=|{|}|:|->|;|,)*$|entity\\.name\\.section(=|{|}|:|->|;|,)* |entity\\.name\\.selector(=|{|}|:|->|;|,)*$|entity\\.name\\.selector(=|{|}|:|->|;|,)* |entity\\.name\\.tag(=|{|}|:|->|;|,)*$|entity\\.name\\.tag(=|{|}|:|->|;|,)* |entity\\.name\\.type(=|{|}|:|->|;|,)*$|entity\\.name\\.type(=|{|}|:|->|;|,)* |entity\\.other\\.attribute-name(=|{|}|:|->|;|,)*$|entity\\.other\\.attribute-name(=|{|}|:|->|;|,)* |entity\\.other\\.inherited-class(=|{|}|:|->|;|,)*$|entity\\.other\\.inherited-class(=|{|}|:|->|;|,)* |entity\\.other(=|{|}|:|->|;|,)*$|entity\\.other(=|{|}|:|->|;|,)* |entity\\.name(=|{|}|:|->|;|,)*$|entity\\.name(=|{|}|:|->|;|,)* |entity(=|{|}|:|->|;|,)*$|entity(=|{|}|:|->|;|,)* |header(=|{|}|:|->|;|,)*$|header(=|{|}|:|->|;|,)* |invalid\\.deprecated(=|{|}|:|->|;|,)*$|invalid\\.deprecated(=|{|}|:|->|;|,)* |invalid\\.illegal(=|{|}|:|->|;|,)*$|invalid\\.illegal(=|{|}|:|->|;|,)* |invalid(=|{|}|:|->|;|,)*$|invalid(=|{|}|:|->|;|,)* |keyword\\.other\\.unit(=|{|}|:|->|;|,)*$|keyword\\.other\\.unit(=|{|}|:|->|;|,)* |keyword\\.control\\.less(=|{|}|:|->|;|,)*$|keyword\\.control\\.less(=|{|}|:|->|;|,)* |keyword\\.operator\\.new(=|{|}|:|->|;|,)*$|keyword\\.operator\\.new(=|{|}|:|->|;|,)* |keyword\\.operator(=|{|}|:|->|;|,)*$|keyword\\.operator(=|{|}|:|->|;|,)* |keyword\\.control(=|{|}|:|->|;|,)*$|keyword\\.control(=|{|}|:|->|;|,)* |keyword\\.other(=|{|}|:|->|;|,)*$|keyword\\.other(=|{|}|:|->|;|,)* |markup\\.punctuation\\.list\\.beginning(=|{|}|:|->|;|,)*$|markup\\.punctuation\\.list\\.beginning(=|{|}|:|->|;|,)* |markup\\.punctuation\\.quote\\.beginning(=|{|}|:|->|;|,)*$|markup\\.punctuation\\.quote\\.beginning(=|{|}|:|->|;|,)* |markup\\.list\\.numbered(=|{|}|:|->|;|,)*$|markup\\.list\\.numbered(=|{|}|:|->|;|,)* |markup\\.inline\\.raw(=|{|}|:|->|;|,)*$|markup\\.inline\\.raw(=|{|}|:|->|;|,)* |markup\\.list\\.unnumbered(=|{|}|:|->|;|,)*$|markup\\.list\\.unnumbered(=|{|}|:|->|;|,)* |markup\\.underline\\.link(=|{|}|:|->|;|,)*$|markup\\.underline\\.link(=|{|}|:|->|;|,)* |markup\\.bold(=|{|}|:|->|;|,)*$|markup\\.bold(=|{|}|:|->|;|,)* |markup\\.changed(=|{|}|:|->|;|,)*$|markup\\.changed(=|{|}|:|->|;|,)* |markup\\.deleted(=|{|}|:|->|;|,)*$|markup\\.deleted(=|{|}|:|->|;|,)* |markup\\.heading(=|{|}|:|->|;|,)*$|markup\\.heading(=|{|}|:|->|;|,)* |markup\\.inserted(=|{|}|:|->|;|,)*$|markup\\.inserted(=|{|}|:|->|;|,)* |markup\\.italic(=|{|}|:|->|;|,)*$|markup\\.italic(=|{|}|:|->|;|,)* |markup\\.list(=|{|}|:|->|;|,)*$|markup\\.list(=|{|}|:|->|;|,)* |markup\\.other(=|{|}|:|->|;|,)*$|markup\\.other(=|{|}|:|->|;|,)* |markup\\.quote(=|{|}|:|->|;|,)*$|markup\\.quote(=|{|}|:|->|;|,)* |markup\\.raw(=|{|}|:|->|;|,)*$|markup\\.raw(=|{|}|:|->|;|,)* |markup\\.underline(=|{|}|:|->|;|,)*$|markup\\.underline(=|{|}|:|->|;|,)* |markup(=|{|}|:|->|;|,)*$|markup(=|{|}|:|->|;|,)* |meta\\.structure\\.dictionary\\.key\\.python(=|{|}|:|->|;|,)*$|meta\\.structure\\.dictionary\\.key\\.python(=|{|}|:|->|;|,)* |meta\\.parameter\\.type\\.variable(=|{|}|:|->|;|,)*$|meta\\.parameter\\.type\\.variable(=|{|}|:|->|;|,)* |meta\\.preprocessor\\.numeric(=|{|}|:|->|;|,)*$|meta\\.preprocessor\\.numeric(=|{|}|:|->|;|,)* |meta\\.preprocessor\\.string(=|{|}|:|->|;|,)*$|meta\\.preprocessor\\.string(=|{|}|:|->|;|,)* |meta\\.type\\.annotation(=|{|}|:|->|;|,)*$|meta\\.type\\.annotation(=|{|}|:|->|;|,)* |meta\\.type\\.name(=|{|}|:|->|;|,)*$|meta\\.type\\.name(=|{|}|:|->|;|,)* |meta\\.cast(=|{|}|:|->|;|,)*$|meta\\.cast(=|{|}|:|->|;|,)* |meta\\.preprocessor(=|{|}|:|->|;|,)*$|meta\\.preprocessor(=|{|}|:|->|;|,)* |meta\\.return-type(=|{|}|:|->|;|,)*$|meta\\.return-type(=|{|}|:|->|;|,)* |meta\\.selector(=|{|}|:|->|;|,)*$|meta\\.selector(=|{|}|:|->|;|,)* |meta\\.tag(=|{|}|:|->|;|,)*$|meta\\.tag(=|{|}|:|->|;|,)* |metatag\\.php(=|{|}|:|->|;|,)*$|metatag\\.php(=|{|}|:|->|;|,)* |meta(=|{|}|:|->|;|,)*$|meta(=|{|}|:|->|;|,)* |storage\\.modifier\\.import\\.java(=|{|}|:|->|;|,)*$|storage\\.modifier\\.import\\.java(=|{|}|:|->|;|,)* |storage\\.modifier\\.package\\.java(=|{|}|:|->|;|,)*$|storage\\.modifier\\.package\\.java(=|{|}|:|->|;|,)* |storage\\.type\\.cs(=|{|}|:|->|;|,)*$|storage\\.type\\.cs(=|{|}|:|->|;|,)* |storage\\.type\\.java(=|{|}|:|->|;|,)*$|storage\\.type\\.java(=|{|}|:|->|;|,)* |storage\\.modifier(=|{|}|:|->|;|,)*$|storage\\.modifier(=|{|}|:|->|;|,)* |storage\\.type(=|{|}|:|->|;|,)*$|storage\\.type(=|{|}|:|->|;|,)* |storage(=|{|}|:|->|;|,)*$|storage(=|{|}|:|->|;|,)* |string\\.quoted\\.double(=|{|}|:|->|;|,)*$|string\\.quoted\\.double(=|{|}|:|->|;|,)* |string\\.quoted\\.other(=|{|}|:|->|;|,)*$|string\\.quoted\\.other(=|{|}|:|->|;|,)* |string\\.quoted\\.single(=|{|}|:|->|;|,)*$|string\\.quoted\\.single(=|{|}|:|->|;|,)* |string\\.quoted\\.triple(=|{|}|:|->|;|,)*$|string\\.quoted\\.triple(=|{|}|:|->|;|,)* |string\\.html(=|{|}|:|->|;|,)*$|string\\.html(=|{|}|:|->|;|,)* |string\\.interpolated(=|{|}|:|->|;|,)*$|string\\.interpolated(=|{|}|:|->|;|,)* |string\\.jade(=|{|}|:|->|;|,)*$|string\\.jade(=|{|}|:|->|;|,)* |string\\.other(=|{|}|:|->|;|,)*$|string\\.other(=|{|}|:|->|;|,)* |string\\.quoted(=|{|}|:|->|;|,)*$|string\\.quoted(=|{|}|:|->|;|,)* |string\\.regexp(=|{|}|:|->|;|,)*$|string\\.regexp(=|{|}|:|->|;|,)* |string\\.unquoted(=|{|}|:|->|;|,)*$|string\\.unquoted(=|{|}|:|->|;|,)* |string\\.xml(=|{|}|:|->|;|,)*$|string\\.xml(=|{|}|:|->|;|,)* |string\\.yaml(=|{|}|:|->|;|,)*$|string\\.yaml(=|{|}|:|->|;|,)* |string(=|{|}|:|->|;|,)*$|string(=|{|}|:|->|;|,)* |strong(=|{|}|:|->|;|,)*$|strong(=|{|}|:|->|;|,)* |support\\.type\\.property-name\\.css(=|{|}|:|->|;|,)*$|support\\.type\\.property-name\\.css(=|{|}|:|->|;|,)* |support\\.type\\.property-name\\.less(=|{|}|:|->|;|,)*$|support\\.type\\.property-name\\.less(=|{|}|:|->|;|,)* |support\\.type\\.property-name\\.scss(=|{|}|:|->|;|,)*$|support\\.type\\.property-name\\.scss(=|{|}|:|->|;|,)* |support\\.function\\.git-rebase(=|{|}|:|->|;|,)*$|support\\.function\\.git-rebase(=|{|}|:|->|;|,)* |support\\.type\\.property-name(=|{|}|:|->|;|,)*$|support\\.type\\.property-name(=|{|}|:|->|;|,)* |support\\.class(=|{|}|:|->|;|,)*$|support\\.class(=|{|}|:|->|;|,)* |support\\.constant(=|{|}|:|->|;|,)*$|support\\.constant(=|{|}|:|->|;|,)* |support\\.function(=|{|}|:|->|;|,)*$|support\\.function(=|{|}|:|->|;|,)* |support\\.other(=|{|}|:|->|;|,)*$|support\\.other(=|{|}|:|->|;|,)* |support\\.property-value(=|{|}|:|->|;|,)*$|support\\.property-value(=|{|}|:|->|;|,)* |support\\.type(=|{|}|:|->|;|,)*$|support\\.type(=|{|}|:|->|;|,)* |support\\.variable(=|{|}|:|->|;|,)*$|support\\.variable(=|{|}|:|->|;|,)* |support(=|{|}|:|->|;|,)*$|support(=|{|}|:|->|;|,)* |variable\\.language(=|{|}|:|->|;|,)*$|variable\\.language(=|{|}|:|->|;|,)* |variable\\.name(=|{|}|:|->|;|,)*$|variable\\.name(=|{|}|:|->|;|,)* |variable\\.other(=|{|}|:|->|;|,)*$|variable\\.other(=|{|}|:|->|;|,)* |variable\\.parameter(=|{|}|:|->|;|,)*$|variable\\.parameter(=|{|}|:|->|;|,)* |variable(=|{|}|:|->|;|,)*$|variable(=|{|}|:|->|;|,)* )",
+										"captures": {
+                                            "1": {
+                                                "patterns": [
+                                                    {
+                                                        "name": "keyword.operator.new",
+                                                        "match": "(=|{|}|:|->|;|,)"
+                                                    }
+                                                ]
+                                            }
+                                        }
+									},
+									{
+										"name": "keyword.control",
+										"match": "(keyword(=|{|}|:|->|;|,)*$|keyword(=|{|}|:|->|;|,)* |comment(=|{|}|:|->|;|,)*$|comment(=|{|}|:|->|;|,)* |line(=|{|}|:|->|;|,)*$|line(=|{|}|:|->|;|,)* |block(=|{|}|:|->|;|,)*$|block(=|{|}|:|->|;|,)* )",
+										"captures": {
+                                            "1": {
+                                                "patterns": [
+                                                    {
+                                                        "name": "keyword.operator.new",
+                                                        "match": "(=|{|}|:|->|;|,)"
+                                                    }
+                                                ]
+                                            }
+                                        }
+									}
+									]
+					},
+					"language_operation": {
+						"patterns": [
+									{
+										"name": "keyword.operator.new",
+										"match": "(=|{|}|:|->|;|,)"
+									}
+									]
+					},
+					"regular_expression": {
+						"patterns": [
+									]
+					}
+				}
+}
