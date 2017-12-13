@@ -13,6 +13,7 @@ import { join } from 'path';
 import * as fs from 'fs';
 import { setTimeout } from 'timers';
 
+
 function startLangServer(command: string, args: string[], documentSelector: string[]): Disposable {
 
 	const options: ExecutableOptions  = {
@@ -58,6 +59,23 @@ function startLangServerTCP(addr: number): Disposable {
 export function activate(context: ExtensionContext) {
 
 	context.subscriptions.push(startLangServerTCP(5000))
+
+	const codeOutline_1 = require("../outline/outline");
+	let disp = vscode.workspace.onDidOpenTextDocument((doc) => {
+		new codeOutline_1.CodeOutline(context);
+	});
+
+	context.subscriptions.push(disp);
+
+	disp = vscode.workspace.onDidCloseTextDocument((doc) => {
+
+	});
+
+	setTimeout(() => {
+		const codeOutline_1 = require("../outline/outline");
+		new codeOutline_1.CodeOutline(context);
+	},2000);
+	
 
 	// let isWin = /^win/.test(process.platform);
 	// let cmd = (isWin === true ? '' : 'source ') + 'activate && textxls'

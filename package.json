@@ -80,30 +80,13 @@
 			{
 				"command": "genext",
 				"title": "Generate extension"
-			},
-			{
-				"command": "corefresh",
-				"title": "Refresh",
-				"icon": {
-					"dark": "resources/dark/icon-refresh.svg",
-					"light": "resources/light/icon-refresh.svg"
-				}
 			}
 		],
 		"views": {
 			"explorer": [
 				{
-					"id": "codeOutline",
+					"id": "outline",
 					"name": "Code Outline"
-				}
-			]
-		},
-		"menus": {
-			"view/title": [
-				{
-					"command": "corefresh",
-					"when": "view == codeOutline",
-					"group": "navigation"
 				}
 			]
 		}
