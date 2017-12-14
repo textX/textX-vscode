@@ -9,13 +9,14 @@
 		"url": "https://github.com/textX-tools/textX-vscode"
 	},
 	"engines": {
-		"vscode": "^1.15.0"
+		"vscode": "^1.16.0"
 	},
 	"categories": [
 		"Languages"
 	],
 	"activationEvents": [
-		"workspaceContains:**/.txconfig"
+		"workspaceContains:**/.txconfig",
+		"onView:outline"
 	],
 	"main": "./out/extension",
 	"contributes": {
@@ -85,7 +86,7 @@
 		"views": {
 			"explorer": [
 				{
-					"id": "outline",
+					"id": "codeOutline",
 					"name": "Code Outline"
 				}
 			]
@@ -107,6 +108,7 @@
 		"@types/mocha": "^2.2.32"
 	},
 	"dependencies": {
-		"vscode-languageclient": "^3.5.0"
+		"vscode-languageclient": "^3.5.0",
+		"vscode-languageserver": "^3.5.0"
 	}
 }

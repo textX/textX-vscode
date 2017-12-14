@@ -12,8 +12,8 @@ import { ExecutableOptions, ServerOptions, LanguageClient, LanguageClientOptions
 import { join } from 'path';
 import * as fs from 'fs';
 import { setTimeout } from 'timers';
-
-
+import { CodeOutline } from './outline/outline';
+ 
 function startLangServer(command: string, args: string[], documentSelector: string[]): Disposable {
 
 	const options: ExecutableOptions  = {
@@ -58,11 +58,13 @@ function startLangServerTCP(addr: number): Disposable {
 
 export function activate(context: ExtensionContext) {
 
+	console.log('activate');
 	context.subscriptions.push(startLangServerTCP(5000))
 
-	const codeOutline_1 = require("../outline/outline");
+	//let codeOutline = new CodeOutline(context);
+
 	let disp = vscode.workspace.onDidOpenTextDocument((doc) => {
-		new codeOutline_1.CodeOutline(context);
+		new CodeOutline(context);
 	});
 
 	context.subscriptions.push(disp);
@@ -72,9 +74,13 @@ export function activate(context: ExtensionContext) {
 	});
 
 	setTimeout(() => {
-		const codeOutline_1 = require("../outline/outline");
-		new codeOutline_1.CodeOutline(context);
+		new CodeOutline(context);
 	},2000);
+
+	/*setTimeout(() => {
+		//const codeOutline_1 = require("../outline/outline");
+		//new codeOutline_1.CodeOutline(context);
+	},2000);*/
 	
 
 	// let isWin = /^win/.test(process.platform);
@@ -90,4 +96,3 @@ export function activate(context: ExtensionContext) {
 	// 	return x;
 	// }));
 }
-
