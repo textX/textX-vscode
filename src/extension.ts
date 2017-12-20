@@ -58,10 +58,7 @@ function startLangServerTCP(addr: number): Disposable {
 
 export function activate(context: ExtensionContext) {
 
-	console.log('activate');
 	context.subscriptions.push(startLangServerTCP(5000))
-
-	//let codeOutline = new CodeOutline(context);
 
 	let disp = vscode.workspace.onDidOpenTextDocument((doc) => {
 		new CodeOutline(context);
@@ -69,18 +66,9 @@ export function activate(context: ExtensionContext) {
 
 	context.subscriptions.push(disp);
 
-	disp = vscode.workspace.onDidCloseTextDocument((doc) => {
-
-	});
-
 	setTimeout(() => {
 		new CodeOutline(context);
 	},2000);
-
-	/*setTimeout(() => {
-		//const codeOutline_1 = require("../outline/outline");
-		//new codeOutline_1.CodeOutline(context);
-	},2000);*/
 	
 
 	// let isWin = /^win/.test(process.platform);
