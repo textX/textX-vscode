@@ -58,29 +58,64 @@ function startLangServerTCP(addr: number): Disposable {
 
 export function activate(context: ExtensionContext) {
 
-	context.subscriptions.push(startLangServerTCP(5000))
+	// Path to virtualenv where textx language server is installed - from configuration section
+	const pyEnvPath : string = vscode.workspace.getConfiguration().get('textxls.env');
 
+	// Path to __main__.py module inside the extension
+	// When deploying extension, copy https://github.com/textX-tools/textX-languageserver/tree/master/textx_langserv
+	// in root of this extension
+	const pyMainPath : string = join(__dirname,'../textx_langserv/__main__.py')
+
+	// Path to installation guide file
+	const instGuidePath : string = join(__dirname,'../installation-guide.txt')
+
+	// Add error callback when spawning process in language-client
+	// On error, open installation guide
+	function openInstallationGuide() {
+		// Local installation guide
+		let guideTxt = fs.readFileSync(instGuidePath, 'utf8');
+		// Open installation guide in new tab
+		vscode.workspace.openTextDocument(instGuidePath).then(doc=> {
+			vscode.window.showTextDocument(doc);                   
+	   	});
+		
+	}
+
+	let lsDisp: Disposable = null;
+	// Configuration section exists
+	// Comment when debugging via tcp
+	// if (pyEnvPath){
+	// 	lsDisp = startLangServer(pyEnvPath, [pyMainPath], []);
+	// }
+	// // Language server is installed globaly
+	// else{
+	// 	lsDisp = startLangServer('textxls', [], []);
+	// }
+
+	// Uncomment for tcp
+	lsDisp = startLangServerTCP(5000);
+
+	context.subscriptions.push(lsDisp);
+	
+
+	// Code outline
 	let disp = vscode.workspace.onDidOpenTextDocument((doc) => {
 		new CodeOutline(context);
 	});
 
 	context.subscriptions.push(disp);
-
-	setTimeout(() => {
-		new CodeOutline(context);
-	},2000);
 	
 
-	// let isWin = /^win/.test(process.platform);
-	// let cmd = (isWin === true ? '' : 'source ') + 'activate && textxls'
+	// Code lens
+	vscode.commands.registerCommand('code_lens_references', (...args) => {
+		// Change cursor position
+		const editor = vscode.window.activeTextEditor;
+        const position = editor.selection.active;
+        var newPosition = position.with(args[0], args[1]);
+        var newSelection = new vscode.Selection(newPosition, newPosition);
+		editor.selection = newSelection;
+		// Trigger find all references command
+		vscode.commands.executeCommand('editor.action.referenceSearch.trigger');
+	});
 
-	// let p = join(__dirname,'../textxlsenv/bin')
-	// vscode.window.showInformationMessage(p);
-
-	//context.subscriptions.push(startLangServerTCP(5000));
-	// context.subscriptions.push(startLangServer(cmd, [], []))
-
-	// context.subscriptions.push(vscode.commands.registerCommand('test', (x) => {
-	// 	return x;
-	// }));
 }

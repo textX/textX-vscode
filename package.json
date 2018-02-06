@@ -79,8 +79,8 @@
 		],
 		"commands": [
 			{
-				"command": "genext",
-				"title": "Generate extension"
+				"command": "generator.vscode",
+				"title": "Generate vscode extension"
 			}
 		],
 		"views": {

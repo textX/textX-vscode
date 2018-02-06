@@ -1,0 +1,4 @@
+How to install:
+1. This file should open
+2. if client can't start the server
+3. TODO
