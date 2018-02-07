@@ -17,8 +17,7 @@ import { CodeOutline } from './outline/outline';
 function startLangServer(command: string, args: string[], documentSelector: string[]): Disposable {
 
 	const options: ExecutableOptions  = {
-		// shell: true,
-		cwd: join(__dirname,'../textxlsenv/bin')
+		
 	}
 	const serverOptions: ServerOptions = {
         command,
@@ -84,16 +83,16 @@ export function activate(context: ExtensionContext) {
 	let lsDisp: Disposable = null;
 	// Configuration section exists
 	// Comment when debugging via tcp
-	// if (pyEnvPath){
-	// 	lsDisp = startLangServer(pyEnvPath, [pyMainPath], []);
-	// }
-	// // Language server is installed globaly
-	// else{
-	// 	lsDisp = startLangServer('textxls', [], []);
-	// }
+	if (pyEnvPath){
+		lsDisp = startLangServer(pyEnvPath, [pyMainPath], []);
+	}
+	// Language server is installed globaly
+	else{
+		lsDisp = startLangServer('textxls', [], []);
+	}
 
 	// Uncomment for tcp
-	lsDisp = startLangServerTCP(5000);
+	// lsDisp = startLangServerTCP(5000);
 
 	context.subscriptions.push(lsDisp);
 	
