@@ -63,7 +63,7 @@ export function activate(context: ExtensionContext) {
 	// Path to __main__.py module inside the extension
 	// When deploying extension, copy https://github.com/textX-tools/textX-languageserver/tree/master/textx_langserv
 	// in root of this extension
-	const pyMainPath : string = join(__dirname,'../textx_langserv/__main__.py')
+	const pyMainPath : string = join(__dirname,'../textx-languageserver/textx_langserv/__main__.py')
 
 	// Path to installation guide file
 	const instGuidePath : string = join(__dirname,'../installation-guide.txt')
@@ -83,16 +83,16 @@ export function activate(context: ExtensionContext) {
 	let lsDisp: Disposable = null;
 	// Configuration section exists
 	// Comment when debugging via tcp
-	if (pyEnvPath){
-		lsDisp = startLangServer(pyEnvPath, [pyMainPath], []);
-	}
-	// Language server is installed globaly
-	else{
-		lsDisp = startLangServer('textxls', [], []);
-	}
+	// if (pyEnvPath){
+	// 	lsDisp = startLangServer(pyEnvPath, [pyMainPath], []);
+	// }
+	// // Language server is installed globaly
+	// else{
+	// 	lsDisp = startLangServer('textxls', [], []);
+	// }
 
 	// Uncomment for tcp
-	// lsDisp = startLangServerTCP(5000);
+	lsDisp = startLangServerTCP(5000);
 
 	context.subscriptions.push(lsDisp);
 	

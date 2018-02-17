@@ -50,8 +50,8 @@ export class CodeOutline implements TreeDataProvider<Node> {
     }
 
     private updateSymbols(editor:TextEditor) {
-    if (editor) { 
-            commands.executeCommand('outline.refresh').then(
+    if (editor) {
+            commands.executeCommand('outline.refresh', {'uri': editor.document.uri}).then(
                 (results) => {
                     this.nodes = JSON.parse(results as string);
                     let root = new Node();
