@@ -9,7 +9,7 @@
 		"url": "https://github.com/textX-tools/textX-vscode"
 	},
 	"engines": {
-		"vscode": "^1.16.0"
+		"vscode": "^1.20.0"
 	},
 	"categories": [
 		"Languages"
@@ -19,7 +19,7 @@
 		"onLanguage:textx",
 		"onLanguage:txcolor",
 		"onLanguage:txoutline",
-		"onLanguage:txconfig",		
+		"onLanguage:txconfig",
 		"onView:outline"
 	],
 	"main": "./out/extension",
@@ -64,6 +64,11 @@
 				"path": "./syntaxes/textx.tmLanguage.json"
 			},
 			{
+				"language": "txconfig",
+				"scopeName": "source.txconfig",
+				"path": "./syntaxes/config.tmLanguage.json"
+			},
+			{
 				"language": "txcolor",
 				"scopeName": "source.txcolor",
 				"path": "./syntaxes/coloring.tmLanguage.json"
@@ -98,7 +103,7 @@
 	},
 	"scripts": {
 		"update-vscode": "node ./node_modules/vscode/bin/install",
-		"vscode:prepublish": "tsc -p ./ && svn export https://github.com/textX-tools/textX-languageserver/trunk/textx_langserv",
+		"vscode:prepublish": "tsc -p ./",
 		"compile": "tsc -watch -p ./",
 		"client-watch": "tsc -w -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
@@ -112,6 +117,7 @@
 		"@types/mocha": "^2.2.32"
 	},
 	"dependencies": {
+		"portfinder": "^1.0.13",
 		"vscode-languageclient": "^3.5.0"
 	}
 }
