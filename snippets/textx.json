@@ -1,8 +1,0 @@
-{
-    "insert": {
-        "prefix": "ins",
-        "body": [
-            "insert $1"
-        ]
-    }
-}

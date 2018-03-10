@@ -1,0 +1,11 @@
+{
+    "txout": {
+        "prefix": "txout",
+        "body": [
+            "${1:RuleName} {",
+            "\tlabel = ${2:RuleProp(s)}",
+            "\ticon = \"${3:PathToIcon}\"",
+            "}"
+        ]
+    }
+}

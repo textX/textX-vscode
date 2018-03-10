@@ -1,0 +1,34 @@
+{
+    "txcfg": {
+        "prefix": "txcfg",
+        "body": [
+            "dsl ${1:name}[${2:extension}] {",
+            "\tpaths {",
+            "\t\tgrammar: \"${3:path}\"",
+            "\t}",
+            "}"
+        ],
+        "description": "Minimum textx configuration snippet."
+    },
+    "txcfgfull": {
+        "prefix": "txcfg",
+        "body": [
+            "dsl ${1:name}[${2:extension}] {",
+            "\tgeneral {",
+            "\t\tpublisher: \"${3:publisher}\"",
+            "\t\tauthor: \"${4:name}\"",
+            "\t\turl: \"${5:url}\"",
+            "\t\tversion: \"${6:version}\"",
+            "\t}",
+            "\tpaths {",
+            "\t\tgrammar: \"${7:path}\"",
+            "\t\toutline: \"${8:path}\"",
+            "\t\tcoloring: \"${9:path}\"",
+            "\t\tclasses: \"${10:ModulePath}:${11:FuncName}\"",
+            "\t\tbuiltins: \"${12:ModulePath}:${13:FuncName}\"",
+            "\t}",
+            "}"
+        ],
+        "description": "Full textX configuration snippet."
+    }
+}

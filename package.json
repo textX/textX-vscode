@@ -99,7 +99,17 @@
 					"name": "Code Outline"
 				}
 			]
-		}
+		},
+		"snippets": [
+            {
+                "language": "txconfig",
+                "path": "./snippets/txconfig.json"
+            },
+            {
+                "language": "txoutline",
+                "path": "./snippets/txoutline.json"
+            }
+        ]
 	},
 	"scripts": {
 		"update-vscode": "node ./node_modules/vscode/bin/install",
