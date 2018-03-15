@@ -109,15 +109,15 @@
 			]
 		},
 		"snippets": [
-            {
-                "language": "txconfig",
-                "path": "./snippets/txconfig.json"
-            },
-            {
-                "language": "txoutline",
-                "path": "./snippets/txoutline.json"
-            }
-        ]
+			{
+				"language": "txconfig",
+				"path": "./snippets/txconfig.json"
+			},
+			{
+				"language": "txoutline",
+				"path": "./snippets/txoutline.json"
+			}
+		]
 	},
 	"scripts": {
 		"update-vscode": "node ./node_modules/vscode/bin/install",
@@ -136,6 +136,6 @@
 	},
 	"dependencies": {
 		"portfinder": "^1.0.13",
-		"vscode-languageclient": "^3.5.0"
+		"vscode-languageclient": "^4.0.0"
 	}
 }
