@@ -90,6 +90,14 @@
 			{
 				"command": "generator.vscode",
 				"title": "Generate vscode extension"
+			},
+			{
+				"command": "dotexport.metamodel",
+				"title": "Export metamodel to dot"
+			},
+			{
+				"command": "dotexport.model",
+				"title": "Export model to dot"
 			}
 		],
 		"views": {
