@@ -5,6 +5,9 @@
 	"fileTypes": [".txconfig"],
 	"patterns": [
 				{
+					"include": "#comment"
+				},
+				{
 					"include": "#string"
 				},
 				{
@@ -21,6 +24,19 @@
 				}
 				],
                 "repository": {
+					"comment": {
+						"patterns": [
+									{
+										"name": "comment.line",
+										"match": "//.*$"
+									},
+									{
+										"name": "comment.block",
+										"begin": "/\\*",
+										"end": "\\*/"
+									}
+									]
+					},
 					"string": {
 						"patterns": [
 									{

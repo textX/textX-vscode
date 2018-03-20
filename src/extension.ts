@@ -17,6 +17,7 @@ import { CodeOutline } from './outline/outline';
 import * as cp from "child_process"
 import * as portfinder from "portfinder";
 
+var SERVER_CONFIG = require('../server_config.json')
 
 function startLangServer(command: string, args: string[], documentSelector: string[]): Disposable {
 
@@ -32,6 +33,10 @@ function startLangServer(command: string, args: string[], documentSelector: stri
 		documentSelector: ['*'],
 		synchronize: {
 			fileEvents: workspace.createFileSystemWatcher('**/*.*')
+		},
+		initializationOptions: {
+			"SERVER_TYPE": SERVER_CONFIG.SERVER_TYPE,
+			"SERVER_CONNECTION" : SERVER_CONFIG.SERVER_CONNECTION
 		}
 	}
 	return new LanguageClient(command, serverOptions, clientOptions).start();
@@ -54,6 +59,10 @@ function startLangServerTCP(addr: number): Disposable {
 		documentSelector: ['*'], // filter documents on server (based on configuration file)
 		synchronize: {
 			fileEvents: workspace.createFileSystemWatcher('**/*.*')
+		},
+		initializationOptions: {
+			"SERVER_TYPE": SERVER_CONFIG.SERVER_TYPE,
+			"SERVER_CONNECTION" : SERVER_CONFIG.SERVER_CONNECTION
 		}
 	}
 	return new LanguageClient(`tcp lang server (port ${addr})`, serverOptions, clientOptions).start();

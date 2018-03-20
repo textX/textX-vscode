@@ -69,7 +69,7 @@ export class CodeOutline implements TreeDataProvider<Node> {
     private registerCommands() {
         let codeOutline = this;
         window.registerTreeDataProvider('codeOutline', codeOutline);
-        commands.registerCommand('outline.refresh', () => {
+        commands.registerCommand('codeOutline.refresh', () => {
             codeOutline.refresh()
         });
         commands.registerCommand('codeOutline.revealRange', (editor: TextEditor, node: Node) => {

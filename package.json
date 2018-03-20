@@ -54,7 +54,8 @@
 				"id": "txconfig",
 				"extensions": [
 					".txconfig"
-				]
+				],
+				"configuration": "./language-configuration.json"
 			}
 		],
 		"grammars": [
