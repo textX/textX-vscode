@@ -1,9 +1,10 @@
 {
 	"name": "textx-ls",
-	"description": "A language server client for textx dsl",
-	"author": "Daniel Elero",
-	"version": "0.0.1",
+	"description": "A VS code extension for textx DSLs",
+	"author": "Daniel Elero, Nemanja Starčev",
+	"version": "1.0.0",
 	"publisher": "danixeee",
+	"icon": "art/textX-logo.png",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/textX-tools/textX-vscode"
@@ -19,8 +20,7 @@
 		"onLanguage:textx",
 		"onLanguage:txcolor",
 		"onLanguage:txoutline",
-		"onLanguage:txconfig",
-		"onView:outline"
+		"onLanguage:txconfig"
 	],
 	"main": "./out/extension",
 	"contributes": {
