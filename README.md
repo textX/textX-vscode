@@ -7,7 +7,7 @@ Extension can be found on [marketplace](https://marketplace.visualstudio.com/ite
 
 ## textX-ls extension in action
 
-[![textX language server](http://img.youtube.com/vi/vAP5c7pwWiY/0.jpg)](https://www.youtube.com/watch?v=vAP5c7pwWiY)
+[![textX language server](https://img.youtube.com/vi/vAP5c7pwWiY/0.jpg)](https://www.youtube.com/watch?v=vAP5c7pwWiY)
 
 ## Building and running localy
 
