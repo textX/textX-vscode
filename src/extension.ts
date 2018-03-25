@@ -79,7 +79,7 @@ export function activate(context: ExtensionContext) {
 		}
 
 		// Path to __main__.py module inside the extension
-		const textxls_main : string = join(__dirname,'../textX-languageserver/__main__.py')
+		const textxls_main : string = join(__dirname,'../textX-languageserver/src/__main__.py')
 
 		let lsDisp: Disposable = null;
 

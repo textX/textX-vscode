@@ -2,7 +2,7 @@
 	"name": "textx-ls",
 	"description": "A VS code extension for textx DSLs",
 	"author": "Daniel Elero, Nemanja Starčev",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "danixeee",
 	"icon": "art/textX-logo.png",
 	"repository": {
