@@ -16,6 +16,9 @@ import { CodeOutline } from './outline/outline';
 
 import * as cp from "child_process"
 import * as portfinder from "portfinder";
+import 'constants';
+import { ConfigKeys } from './constants';
+import { resolve } from 'url';
 
 var SERVER_CONFIG = require('../server_config.json')
 
@@ -70,7 +73,7 @@ function startLangServerTCP(addr: number): Disposable {
 
 var PROCESS: cp.ChildProcess = null;
 export function activate(context: ExtensionContext) {
-	
+
 	findPythonExecutable().then(python => {
 
 		if (!python){
@@ -138,10 +141,13 @@ function registerLensReferences(context: vscode.ExtensionContext): void{
 }
 
 function registerCodeOutline(context: vscode.ExtensionContext): void{
-	let disp = vscode.workspace.onDidOpenTextDocument((doc) => {
-		new CodeOutline(context);
-	});
-	context.subscriptions.push(disp);
+	// Wait LS to register commands
+	setTimeout(() => {
+		let disp = vscode.workspace.onDidOpenTextDocument((doc) => {
+			new CodeOutline(context);
+		});
+		context.subscriptions.push(disp);
+	}, 500);
 }
 
 function findPythonExecutable() : Promise<string>{
@@ -149,23 +155,40 @@ function findPythonExecutable() : Promise<string>{
 	const python3 = 'python3';
 
 	return new Promise((resolve, reject) => {
-        cp.execFile(python, ['--version'], { }, (error, stdout, stderr) => {
+		// Check if python path is configured manually	
+		let path = vscode.workspace.getConfiguration().get<string>(ConfigKeys.TEXTXLS_PYTHON_PATH);
+		if (path)
+			if (isPython3(path))
+				resolve(path);
+			else
+				resolve(null);
+		else
+			// Check python cmd
+			if (isPython3(python))
+				resolve(python);
+			else
+				if (isPython3(python3))
+					resolve(python3);
+				else
+					resolve(null);
+
+	});
+
+	function isPython3(python) {
+		try{
+			let stdout = cp.execFileSync(python, ['--version'], { });
 			let version = getPythonVersion(stdout);
 			if (version && version[0] === '3'){
-				resolve(python);
+				return true;
 			}else{
-				return cp.execFile(python3, ['--version'], { }, (error, stdout, stderr) => {
-					let version = getPythonVersion(stdout);
-					if (version){
-						resolve(python3);
-					}else{
-						resolve(null);
-					}
-				});
+				return false;
 			}
-		});
-	});
-	
+		}catch{
+			return false;
+		}
+
+	}
+
 	function getPythonVersion(stdout){
 		let regArray = new RegExp('\\d.\\d.\\d').exec(stdout);
 		return regArray != null ? regArray[0] : null;

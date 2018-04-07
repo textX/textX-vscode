@@ -9,26 +9,16 @@ Extension can be found on [marketplace](https://marketplace.visualstudio.com/ite
 
 [![textX language server](https://img.youtube.com/vi/vAP5c7pwWiY/0.jpg)](https://www.youtube.com/watch?v=vAP5c7pwWiY)
 
-## Building and running localy
+## Configuration
 
-1. Install dependencies `npm install`
-2. In [extension.ts](https://github.com/textX-tools/textX-vscode/blob/master/src/extension.ts)
-comment startLangServer and uncomment startLangServerTCP
-```typescript
-// START FOR PUBLISH
-lsDisp = startLangServer(python, [textxls_main], []);
+### Manually adding path to python 3
 
-// START CLIENT TCP
-// lsDisp = startLangServerTCP(5000);
-context.subscriptions.push(lsDisp);```
-```
-3. Be sure you run language server in tcp mode. [Steps to run language server](https://github.com/textX-tools/textX-languageserver/blob/master/README.md)
-4. Press F5
-5. Open [examples] directory (https://github.com/textX-tools/textX-languageserver/tree/master/examples)
+If you are getting message "Python 3 is required!", you should try to manually add a path to python 3.
 
-Language server should start if you have valid `.txconfig` file in projects root.
+Go to File -> Preferences -> Settings (shortcut: `CTRL + Comma`) and in User or Workspace settings tab add a new key-value pair `"textxls.pythonPath": "PATH_TO_PYTHON3"`
 
-## Configuration file example (`.txconfig`)
+
+### `.txconfig` file example
 ```textx
 dsl Workflow [wf] {
 
@@ -71,6 +61,27 @@ If you have both `textx-ls` and your generated extension installed, you should d
 ## Activation events, languages, commands, snippets
 
 Please take a look at [package.json](https://github.com/textX-tools/textX-vscode/blob/master/package.json)
+
+
+## Building and running localy
+
+1. Install dependencies `npm install`
+2. In [extension.ts](https://github.com/textX-tools/textX-vscode/blob/master/src/extension.ts)
+comment startLangServer and uncomment startLangServerTCP
+```typescript
+// START FOR PUBLISH
+lsDisp = startLangServer(python, [textxls_main], []);
+
+// START CLIENT TCP
+// lsDisp = startLangServerTCP(5000);
+context.subscriptions.push(lsDisp);```
+```
+3. Be sure you run language server in tcp mode. [Steps to run language server](https://github.com/textX-tools/textX-languageserver/blob/master/README.md)
+4. Press F5
+5. Open [examples] directory (https://github.com/textX-tools/textX-languageserver/tree/master/examples)
+
+Language server should start if you have valid `.txconfig` file in projects root.
+
 
 ## License
 
