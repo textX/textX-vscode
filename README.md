@@ -1,9 +1,9 @@
 # textX vs code
 
-This is a VS code extension which uses [textX-languageserver](https://github.com/textx-tools/textx-languageserver).
+This is a VS code extension which uses [textX-languageserver](https://github.com/textX/textx-languageserver).
 It implements [Language Server Protocol](https://github.com/Microsoft/language-server-protocol).
 
-Extension can be found on [marketplace](https://marketplace.visualstudio.com/items?itemName=danixeee.textx-ls)
+Extension can be found on [marketplace](https://marketplace.visualstudio.com/items?itemName=danixeee.textx-ls).
 
 ## textX-ls extension in action
 
@@ -17,8 +17,8 @@ If you are getting message "Python 3 is required!", you should try to manually a
 
 Go to File -> Preferences -> Settings (shortcut: `CTRL + Comma`) and in User or Workspace settings tab add a new key-value pair `"textxls.pythonPath": "PATH_TO_PYTHON3"`
 
-
 ### `.txconfig` file example
+
 ```textx
 dsl Workflow [wf] {
 
@@ -37,7 +37,7 @@ dsl Workflow [wf] {
 
 ## Commands
 
-Press F1 and start typing one of commands mentioned below
+Press F1 and start typing one of following commands:
 
 - `Export metamodel to dot` (creates `dot` file for your grammar in projects root; textx command)
 - `Export model to dot` (creates `dot` file for your model(s) in projects root; textx command)
@@ -60,28 +60,27 @@ If you have both `textx-ls` and your generated extension installed, you should d
 
 ## Activation events, languages, commands, snippets
 
-Please take a look at [package.json](https://github.com/textX-tools/textX-vscode/blob/master/package.json)
+Please take a look at [package.json](https://github.com/textX/textX-vscode/blob/master/package.json)
 
-
-## Building and running localy
+## Building and running locally
 
 1. Install dependencies `npm install`
-2. In [extension.ts](https://github.com/textX-tools/textX-vscode/blob/master/src/extension.ts)
-comment startLangServer and uncomment startLangServerTCP
+2. In [extension.ts](https://github.com/textX/textX-vscode/blob/master/src/extension.ts) comment startLangServer and uncomment startLangServerTCP
+
 ```typescript
 // START FOR PUBLISH
 lsDisp = startLangServer(python, [textxls_main], []);
 
 // START CLIENT TCP
 // lsDisp = startLangServerTCP(5000);
-context.subscriptions.push(lsDisp);```
+context.subscriptions.push(lsDisp);
 ```
-3. Be sure you run language server in tcp mode. [Steps to run language server](https://github.com/textX-tools/textX-languageserver/blob/master/README.md)
+
+3. Be sure you run language server in tcp mode. [Steps to run language server](https://github.com/textX/textX-languageserver/blob/master/README.md)
 4. Press F5
-5. Open [examples] directory (https://github.com/textX-tools/textX-languageserver/tree/master/examples)
+5. Open [examples] directory (https://github.com/textX/textX-languageserver/tree/master/examples)
 
 Language server should start if you have valid `.txconfig` file in projects root.
-
 
 ## License
 
@@ -89,4 +88,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-Fixed [vscode-language-server-node](https://github.com/Microsoft/vscode-languageserver-node) [bug](https://github.com/Microsoft/vscode-languageserver-node/pull/284) 
+Fixed [vscode-language-server-node](https://github.com/Microsoft/vscode-languageserver-node) [bug](https://github.com/Microsoft/vscode-languageserver-node/pull/284)
