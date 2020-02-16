@@ -1,5 +1,7 @@
 # textX vs code
 
+**NOTE:** This project is deprecated. It is superseded by [textX-LS](https://github.com/textX/textX-LS).
+
 This is a VS code extension which uses [textX-languageserver](https://github.com/textX/textx-languageserver).
 It implements [Language Server Protocol](https://github.com/Microsoft/language-server-protocol).
 
